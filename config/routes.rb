@@ -1,4 +1,6 @@
 Styleshoes::Application.routes.draw do
+  resources :shoes
+  root to:'shoes#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

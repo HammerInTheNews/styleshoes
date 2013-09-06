@@ -11,6 +11,28 @@ end
 
 module Styleshoes
   class Application < Rails::Application
+    config.generators do |g|
+        g.test_framework :rspec,
+          # fixtures: true specifies to generate a fixture for each model (using a Factory Girl factory,
+          # instead of an actual fixture)
+          fixtures: true,
+          # view_specs: false says to skip generating view specs. I won’t cover them in this book; instead
+          # we’ll use feature specs to test interface elements.
+          view_specs: false,
+#         helper_specs: false skips generating specs for the helper files Rails generates with each
+#         controller. As your comfort level with RSpec improves, consider changing this option to true
+#         and testing these files.
+          helper_specs: false,
+          # routing_specs: false omits a spec file for your config/routes.rb file. If your application
+          #   is simple, as the one in this book will be, you’re probably safe skipping these specs. As your
+          #   application grows, however, and takes on more complex routing, it’s a good idea to incorporate
+          #   routing specs.
+          routing_specs: false,
+          
+          controller_specs: true,
+          request_specs: false
+        g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
